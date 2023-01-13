@@ -1,11 +1,15 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from 'expo-status-bar'
+import { Button, Input, Image } from 'react-native-elements'
 
 
 const LoginScreen = () => {
 	return (
 		<View>
-			<Text>This is the login screen</Text>
+			<StatusBar style="light" />
+
+			<Image />
 		</View>
 	)
 }
