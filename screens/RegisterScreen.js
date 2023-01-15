@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native'
 import {KeyboardAvoidingView} from 'react-native'
 import { StatusBar } from 'expo-status-bar'
 import {Input, Button, Text} from 'react-native-elements'
+import { getAuth, createUserWithEmailAndPassword, User, updateProfile} from 'firebase/auth';
 
 const RegisterScreen = ({ navigation }) => {
 	const [name,setName] = useState('')
@@ -11,7 +12,16 @@ const RegisterScreen = ({ navigation }) => {
 	const [imageUrl, setImageUrl] = useState('')
 
 	const register = () => {
-
+		const auth = getAuth()
+		createUserWithEmailAndPassword(auth, email,password)
+			.then((user) => {
+				updateProfile(auth.currentUser, {
+					displayName: name,
+					photoURL: imageUrl || "https://secure.gravatar.com/avatar/62f046758ee09670f9d2427ed7970ee9?s=150&r=g&d=https://www.ieeer10.org/wp-content/plugins/userswp/assets/images/no_profile.png"
+				}).then(() => console.log("profile update")).catch(err => alert(err.message))
+				
+			})
+			.catch((err) => alert(err.message))
 	}
 
 	useLayoutEffect(() => {
