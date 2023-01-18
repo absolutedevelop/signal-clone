@@ -2,6 +2,7 @@ import React, {useLayoutEffect, useState, useEffect} from 'react'
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
 import CustomListItem from '../components/CustomListItem'
 import { Avatar } from 'react-native-elements'
+import { StatusBar } from 'expo-status-bar'
 import { getAuth, signOut } from 'firebase/auth';
 import { AntDesign, SimpleLineIcons } from '@expo/vector-icons'
 import {db} from '../firebase'
@@ -85,6 +86,7 @@ const HomeScreen = ({ navigation }) => {
 
 	return (
 		<SafeAreaView>
+		  <StatusBar />
 			<ScrollView style={styles.container}>
 				
 				{chats.map(({id, data:{chatName}}) => (
